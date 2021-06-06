@@ -1,10 +1,10 @@
-package com.devdaviuc.hsworker;
+package com.devdaviuc.hrworker;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class HsWorkerApplicationTests {
+class HrWorkerApplicationTests {
 
 	@Test
 	void contextLoads() {

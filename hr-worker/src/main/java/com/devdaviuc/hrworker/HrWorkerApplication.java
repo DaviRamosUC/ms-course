@@ -1,13 +1,13 @@
-package com.devdaviuc.hsworker;
+package com.devdaviuc.hrworker;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 
 @SpringBootApplication
-public class HsWorkerApplication {
+public class HrWorkerApplication {
 
 	public static void main(String[] args) {
-		SpringApplication.run(HsWorkerApplication.class, args);
+		SpringApplication.run(HrWorkerApplication.class, args);
 	}
 
 }

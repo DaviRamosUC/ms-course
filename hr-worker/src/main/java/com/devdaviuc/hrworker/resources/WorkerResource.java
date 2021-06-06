@@ -1,8 +1,9 @@
-package com.devdaviuc.hsworker.resources;
+package com.devdaviuc.hrworker.resources;
 
 import java.util.List;
 
 import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.env.Environment;
 import org.springframework.http.ResponseEntity;
@@ -11,33 +12,33 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.devdaviuc.hsworker.entities.Worker;
-import com.devdaviuc.hsworker.repositories.WorkerRepository;
+import com.devdaviuc.hrworker.entities.Worker;
+import com.devdaviuc.hrworker.repositories.WorkerRepository;
 
 @RestController
 @RequestMapping(value = "/workers")
 public class WorkerResource {
 	
-	private static Logger logger = org.slf4j.LoggerFactory.getLogger(WorkerResource.class);
-
+	private static Logger logger = LoggerFactory.getLogger(WorkerResource.class);
+	
 	@Autowired
 	private Environment env;
 	
 	@Autowired
 	private WorkerRepository repository;
-
-	@GetMapping()
+	
+	@GetMapping
 	public ResponseEntity<List<Worker>> findAll() {
-		List<Worker> lista = repository.findAll();
-		return ResponseEntity.ok().body(lista);
-	}
-
+		List<Worker> list = repository.findAll();
+		return ResponseEntity.ok(list);
+	}	
+	
 	@GetMapping(value = "/{id}")
 	public ResponseEntity<Worker> findById(@PathVariable Long id) {
-		logger.info("PORT = "+ env.getProperty("local.server.port"));
 		
-		Worker obj = repository.findById(id).orElse(null);
-		return ResponseEntity.ok().body(obj);
-	}
-
+		logger.info("PORT = " + env.getProperty("local.server.port"));
+		
+		Worker obj = repository.findById(id).get();
+		return ResponseEntity.ok(obj);
+	}	
 }
